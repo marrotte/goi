@@ -11,11 +11,10 @@ Scrapes the **edge** games out of statfox (http://www.statfox.com)
 The power rating system is based on recent game results. The section should be used to compare the relative strength of the two teams involved. A power line is calculated using both teams ratings and home field advantage. Where the power line differs significantly from the current line, the team with the edge is indicated.
 
 ## Usage
-```$ ./goi.py -h
-
-GIO (Games of Interest), Version 4.0
-gio.py -s[--sport] <sport>
-supported sports are cbb, nba, cfl, and mlb```
+    $ ./goi.py -h
+    GIO (Games of Interest), Version 4.0
+    gio.py -s[--sport] <sport>
+    supported sports are cbb, nba, cfl, and mlb```
 
 ## License
 
