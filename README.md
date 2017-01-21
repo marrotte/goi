@@ -1,6 +1,6 @@
 ## Synopsis
 
-Output games of interest (GOI) for sports betting.
+Output games of interest (GOI) for sports betting.  Currently, supports college football & basketball, NBA and MLB.
 
 ## How it works
 
