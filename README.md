@@ -10,6 +10,11 @@ Scrapes the **edge** games out of statfox (http://www.statfox.com)
 
 The power rating system is based on recent game results. The section should be used to compare the relative strength of the two teams involved. A power line is calculated using both teams ratings and home field advantage. Where the power line differs significantly from the current line, the team with the edge is indicated.
 
+## Install
+    git clone https://github.com/marrotte/goi.git
+    cd goi
+    pip install -r requirments.txt
+
 ## Usage
 ### Help
     $ ./goi.py -h
