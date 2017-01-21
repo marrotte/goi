@@ -26,7 +26,7 @@ The power rating system is based on recent game results. The section should be u
     UC-IRVINE 147.5 (-10 powerspread), edge
     CS-NORTHRIDGE +3.5
 
-These two games of interest show that Creighton and UC-Irvine have the edge as explained, above by statfox.  Creighton is a 5 point favorite over Marquette and the power rating has them as an 11 point favorite.  Likewise, UC-Irvine is a 3.5 point favorite over CS-Northridge and the power rating has them as a 10 point favorite.  The Creighton games is on this Saturday at 2:30PM and the UC-Irvine at 10PM.  The mopney line is 160 in the Creighton game and 147.5 in the UC-Irvine game.
+These two games of interest show that Creighton and UC-Irvine have the edge as explained, above by statfox.  Creighton is a 5 point favorite over Marquette and the power rating has them as an 11 point favorite.  Likewise, UC-Irvine is a 3.5 point favorite over CS-Northridge and the power rating has them as a 10 point favorite.  The Creighton games is on this Saturday at 2:30PM and the UC-Irvine at 10PM.  The money line is 160 in the Creighton game and 147.5 in the UC-Irvine game.
 
 ## License
 
