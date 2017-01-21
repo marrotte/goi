@@ -12,6 +12,7 @@ The power rating system is based on recent game results. The section should be u
 
 ## Usage
 ```$ ./goi.py -h
+
 GIO (Games of Interest), Version 4.0
 gio.py -s[--sport] <sport>
 supported sports are cbb, nba, cfl, and mlb```
