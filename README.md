@@ -11,10 +11,22 @@ Scrapes the **edge** games out of statfox (http://www.statfox.com)
 The power rating system is based on recent game results. The section should be used to compare the relative strength of the two teams involved. A power line is calculated using both teams ratings and home field advantage. Where the power line differs significantly from the current line, the team with the edge is indicated.
 
 ## Usage
+### Help
     $ ./goi.py -h
     GIO (Games of Interest), Version 4.0
     gio.py -s[--sport] <sport>
-    supported sports are cbb, nba, cfl, and mlb```
+    supported sports are cbb, nba, cfl, and mlb
+### College basketball
+    $ ./goi.py -s cbb
+    Saturday at  2:30 PM
+    MARQUETTE 160
+    CREIGHTON -5 (-11 powerspread), edge
+
+    Saturday at  10:00 PM
+    UC-IRVINE 147.5 (-10 powerspread), edge
+    CS-NORTHRIDGE +3.5
+
+These two games of interest show that Creighton and UC-Irvine have the edge as explained, above by statfox.  Creighton is a 5 point favorite over Marquette and the power rating has them as an 11 point favorite.  Likewise, UC-Irvine is a 3.5 point favorite over CS-Northridge and the power rating has them as a 10 point favorite.  The Creighton games is on this Saturday at 2:30PM and the UC-Irvine at 10PM.  The mopney line is 160 in the Creighton game and 147.5 in the UC-Irvine game.
 
 ## License
 
