@@ -1,6 +1,6 @@
 ## Synopsis
 
-Output game of interest (GOI) for sports betting.
+Output games of interest (GOI) for sports betting.
 
 ## How it works
 
