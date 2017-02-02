@@ -35,7 +35,7 @@ PIP (https://pip.pypa.io/en/stable/installing/)
     UC-IRVINE 147.5 (-10 powerspread), edge
     CS-NORTHRIDGE +3.5
 
-These two games of interest show that Creighton and UC-Irvine have the edge as explained, above by statfox.  Creighton is a 5 point favorite over Marquette and the power rating has them as an 11 point favorite.  Likewise, UC-Irvine is a 3.5 point favorite over CS-Northridge and the power rating has them as a 10 point favorite.  The Creighton games is on this Saturday at 2:30PM and the UC-Irvine at 10PM.  The money line is 160 in the Creighton game and 147.5 in the UC-Irvine game.
+These two games of interest show that Creighton and UC-Irvine have the edge as explained, above by statfox.  Creighton is a 5 point favorite over Marquette and the power rating has them as an 11 point favorite.  Likewise, UC-Irvine is a 3.5 point favorite over CS-Northridge and the power rating has them as a 10 point favorite.  The Creighton games is on this Saturday at 2:30PM and the UC-Irvine at 10PM.  The _over_ is 160 in the Creighton game and 147.5 in the UC-Irvine game.  But, there's currently no edge computed for the over/under.
 
 As with any gambling system the odds are all on the house -- Creighton lost that game to Marquette, 102 to 94.  That's why it's not called guarenteed wins, but games of interest.  Use with caution.
 
