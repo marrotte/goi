@@ -7,14 +7,16 @@ import sys, getopt
 
 def usage():
         print "GIO (Games of Interest), Version 4.0"
-	print 'gio.py -s[--sport] <sport>'
-        print "supported sports are cbb, nba, cfl, and mbl"
+	print 'gio.py -s[--sport] <sport> [-d[--day]] <day>'
+        print "supported sports are cbb, nba, cfl, and mlb"
+        print "example: ./goi.py -s cbb -d Sunday"
         
 
 def main(argv):
         found_s = False
+	dayFilter = None
 	try:
-	    opts, args = getopt.getopt(argv,"hs:",["help", "sport="])
+	    opts, args = getopt.getopt(argv,"hs:d:",["help", "sport=", "day="])
         except getopt.GetoptError:
             usage()
             sys.exit(2)
@@ -25,6 +27,8 @@ def main(argv):
             elif opt in ("-s", "--sport"): 
                 sport=arg
                 found_s = True
+            elif opt in ("-d", "--day"):
+                dayFilter=arg
             else:
                 usage()
         if not found_s:
@@ -46,40 +50,43 @@ def main(argv):
 
 		tree = html.fromstring(page.content)
 		day = tree.xpath('normalize-space((//table[@class="datatable"]/tr[1]/th[1]/text())[1])')
-		time = tree.xpath('normalize-space((//table[@class="datatable"]/tr[1]/th[1]/b/text())[1])')
 
-		hteam = tree.xpath("string((//td[contains(@class, 'matchupCells')])[4])").strip()
-                hestimate = tree.xpath("string((//td[contains(@class, 'matchupCells')])[5])").strip()
+		if dayFilter is None or dayFilter.lower() in day.lower():
 
-		ateam = tree.xpath("string((//td[contains(@class, 'matchupCells')])[1])").strip()
-                aestimate = tree.xpath("string((//td[contains(@class, 'matchupCells')])[2])").strip()
+			time = tree.xpath('normalize-space((//table[@class="datatable"]/tr[1]/th[1]/b/text())[1])')
 
-		ateam = ateam.strip()
-                hteam = hteam.strip()
-		# get real spread
-		page = requests.get(wwwBaseURL+'/'+sport+'/gamematchup.asp')
-		tree = html.fromstring(page.content)
-		ateamLine = tree.xpath("string((//td/a[text()='"+ateam+"']/following::td[1])[2])")
-                hteamLine = tree.xpath("string((//td/a[text()='"+hteam+"']/following::td[1])[2])")
+			hteam = tree.xpath("string((//td[contains(@class, 'matchupCells')])[4])").strip()
+			hestimate = tree.xpath("string((//td[contains(@class, 'matchupCells')])[5])").strip()
 
-                ateamDisplay=ateam+" "+ateamLine
-                hteamDisplay=hteam+" "+hteamLine
+			ateam = tree.xpath("string((//td[contains(@class, 'matchupCells')])[1])").strip()
+			aestimate = tree.xpath("string((//td[contains(@class, 'matchupCells')])[2])").strip()
 
-		print day + " " + time
+			ateam = ateam.strip()
+			hteam = hteam.strip()
+			# get real spread
+			page = requests.get(wwwBaseURL+'/'+sport+'/gamematchup.asp')
+			tree = html.fromstring(page.content)
+			ateamLine = tree.xpath("string((//td/a[text()='"+ateam+"']/following::td[1])[2])")
+			hteamLine = tree.xpath("string((//td/a[text()='"+hteam+"']/following::td[1])[2])")
 
-		if aestimate:
-                        ateamDisplay=ateamDisplay+" ("+aestimate+" powerspread)"
-		if hestimate:
-                        hteamDisplay=hteamDisplay+" ("+hestimate+" powerspread)"
+			ateamDisplay=ateam+" "+ateamLine
+			hteamDisplay=hteam+" "+hteamLine
 
-                if ateam==edgeTeam:
-                    ateamDisplay=ateamDisplay+", edge"
-                elif hteam==edgeTeam:
-                    hteamDisplay=hteamDisplay+", edge"
+			print day + " " + time
 
-		print ateamDisplay
-		print hteamDisplay
-		print "\n"
+			if aestimate:
+				ateamDisplay=ateamDisplay+" ("+aestimate+" powerspread)"
+			if hestimate:
+				hteamDisplay=hteamDisplay+" ("+hestimate+" powerspread)"
+
+			if ateam==edgeTeam:
+			    ateamDisplay=ateamDisplay+", edge"
+			elif hteam==edgeTeam:
+			    hteamDisplay=hteamDisplay+", edge"
+
+			print ateamDisplay
+			print hteamDisplay
+			print "\n"
 
 if __name__ == "__main__":
    main(sys.argv[1:])
