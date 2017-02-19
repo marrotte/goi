@@ -4,7 +4,7 @@ Output games of interest (GOI) for sports betting.  Currently, supports college 
 
 ## How it works
 
-Scrapes the **edge** games out of statfox (http://www.statfox.com) and displays them on the command line as games of interest.
+Crawls statfox (http://www.statfox.com) game pages, scrapes and displays the **edge** games on the command line as games of interest.
 
 ## Motivation
 
