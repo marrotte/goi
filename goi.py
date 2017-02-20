@@ -75,14 +75,22 @@ def main(argv):
 			print day + " " + time
 
 			if aestimate:
+                                if float(hteamLine) > 0:
+                                    lineDiff = abs(abs(float(hteamLine)) - abs(float(aestimate)))
+                                else: 
+                                    lineDiff = abs(float(hteamLine) + float(aestimate))
 				ateamDisplay=ateamDisplay+" ("+aestimate+" powerspread)"
 			if hestimate:
+                                lineDiff = abs(abs(float(hteamLine)) - abs(float(hestimate)))
 				hteamDisplay=hteamDisplay+" ("+hestimate+" powerspread)"
 
 			if ateam==edgeTeam:
-			    ateamDisplay=ateamDisplay+", edge"
+			    ateamDisplay=ateamDisplay+", "+str(lineDiff)+"pt edge"
 			elif hteam==edgeTeam:
-			    hteamDisplay=hteamDisplay+", edge"
+			    hteamDisplay=hteamDisplay+", "+str(lineDiff)+"pt edge"
+
+                        if lineDiff >= 6:
+                            print "$$$$************Big Money************$$$$"
 
 			print ateamDisplay
 			print hteamDisplay
