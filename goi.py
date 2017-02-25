@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from termcolor import colored
 from lxml import html
 import requests
 from pprint import pprint
@@ -24,7 +25,7 @@ def main(argv):
             if opt == '-h':
                 usage()                     
                 sys.exit(2)
-            elif opt in ("-s", "--sport"): 
+            elif opt in ("-s", "--sport") and arg in ("cbb","nba","cfl","mlb"): 
                 sport=arg
                 found_s = True
             elif opt in ("-d", "--day"):
@@ -75,12 +76,16 @@ def main(argv):
 			print day + " " + time
 
 			if aestimate:
-                                if float(hteamLine) > 0:
-                                    lineDiff = abs(abs(float(hteamLine)) - abs(float(aestimate)))
-                                else: 
-                                    lineDiff = abs(float(hteamLine) + float(aestimate))
+				if hteamLine == "PK":
+					hteamLine = 0
+				if float(hteamLine) > 0:
+				    lineDiff = abs(abs(float(hteamLine)) - abs(float(aestimate)))
+				else: 
+				    lineDiff = abs(float(hteamLine) + float(aestimate))
 				ateamDisplay=ateamDisplay+" ("+aestimate+" powerspread)"
 			if hestimate:
+				if hteamLine == "PK":
+                                        hteamLine = 0
                                 lineDiff = abs(abs(float(hteamLine)) - abs(float(hestimate)))
 				hteamDisplay=hteamDisplay+" ("+hestimate+" powerspread)"
 
@@ -90,7 +95,7 @@ def main(argv):
 			    hteamDisplay=hteamDisplay+", "+str(lineDiff)+"pt edge"
 
                         if lineDiff >= 6:
-                            print "$$$$************Big Money************$$$$"
+                            print colored("$$$$************Big Money************$$$$",'green')
 
 			print ateamDisplay
 			print hteamDisplay
