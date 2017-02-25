@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+import codecs
+import locale
+import sys
+
+# Wrap sys.stdout into a StreamWriter to allow writing unicode.
+sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout) 
 
 from termcolor import colored
 from lxml import html
