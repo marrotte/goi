@@ -96,7 +96,11 @@ def main(argv):
 			if hestimate:
 				if hteamLine == "PK":
                                         hteamLine = 0
-                                lineDiff = abs(abs(float(hteamLine)) - abs(float(hestimate)))
+				if hteamLine > 0:
+					lineDiff = float(hteamLine) + abs(float(hestimate))
+				else:
+                                	lineDiff = abs(abs(float(hteamLine)) - abs(float(hestimate)))
+
 				hteamDisplay=hteamDisplay+" ("+hestimate+" powerspread)"
 
 			if ateam==edgeTeam:
@@ -104,8 +108,8 @@ def main(argv):
 			elif hteam==edgeTeam:
 			    hteamDisplay=hteamDisplay+", "+str(lineDiff)+"pt edge"
 
-                        if lineDiff >= 6:
-                            print colored("$$$$************Big Money************$$$$",'green')
+                        #if lineDiff >= 6:
+                        #    print colored("$$$$************Big Money************$$$$",'green')
 
 			print ateamDisplay
 			print hteamDisplay

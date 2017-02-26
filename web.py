@@ -9,10 +9,14 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def index():
+    index = open("index.html","r")
+    return index.read()
 
-@app.route('/cbb')
-def goi_cbb():
-    cbb = open("cbb.txt", "r")
-    return textile.textile(cbb.read())
+@app.route('/sport/<sport>')
+def goi_sport(sport):
+    matches = open(sport+".txt", "r")
+    ad = open("ad.txt", "r")
+    page = ad.read() + textile.textile(matches.read())
+    return page
+
