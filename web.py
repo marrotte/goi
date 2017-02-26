@@ -1,3 +1,7 @@
+import sys  
+
+reload(sys)  
+sys.setdefaultencoding('utf8')
 import textile
 import goi
 from flask import render_template
@@ -10,4 +14,5 @@ def hello_world():
 
 @app.route('/cbb')
 def goi_cbb():
-    return textile.textile(render_template('cbb.html'))
+    cbb = open("cbb.txt", "r")
+    return textile.textile(cbb.read())

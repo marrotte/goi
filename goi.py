@@ -6,6 +6,8 @@ import sys
 # Wrap sys.stdout into a StreamWriter to allow writing unicode.
 sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout) 
 
+import time as stime
+
 from termcolor import colored
 from lxml import html
 import requests
@@ -47,6 +49,8 @@ def main(argv):
 	daily = requests.get(baseURL+'/feed/statfeedv2/'+sport+'/daily.php?sn=5')
 	tree = html.fromstring(daily.content)
 	reports = tree.xpath('//a[@class="sf" and text()="Report"]/@href')
+
+        print "Updated: " + stime.strftime("%c") + "\n\n"
 
 	for report in reports:
 	    page = requests.get(baseURL+report)
