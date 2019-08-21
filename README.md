@@ -17,7 +17,7 @@ PIP (https://pip.pypa.io/en/stable/installing/)
 ## Install
     git clone https://github.com/marrotte/goi.git
     cd goi
-    pip install -r requirments.txt
+    pip install -r requirements.txt
 
 ## Usage
 ### Help
