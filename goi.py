@@ -7,6 +7,7 @@ import sys
 sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout) 
 
 import time as stime 
+import time as stime
 
 from termcolor import colored
 from lxml import html
@@ -50,7 +51,7 @@ def main(argv):
 	tree = html.fromstring(daily.content)
 	reports = tree.xpath('//a[@class="sf" and text()="Report"]/@href')
 
-	#print "Updated: " + time.strftime("%c %Z") 
+        print "Updated: " + stime.strftime("%c") + "\n\n"
 
 	for report in reports:
 	    page = requests.get(baseURL+report)
@@ -96,9 +97,11 @@ def main(argv):
 			if hestimate:
 				if hteamLine == "PK" or hteamLine is None:
                                         hteamLine = 0
-				print hestimate
-				print hteamLine
-                                lineDiff = abs(abs(float(hteamLine)) - abs(float(hestimate)))
+				if hteamLine > 0:
+					lineDiff = float(hteamLine) + abs(float(hestimate))
+				else:
+                                	lineDiff = abs(abs(float(hteamLine)) - abs(float(hestimate)))
+
 				hteamDisplay=hteamDisplay+" ("+hestimate+" powerspread)"
 
 			if ateam==edgeTeam:
@@ -106,8 +109,8 @@ def main(argv):
 			elif hteam==edgeTeam:
 			    hteamDisplay=hteamDisplay+", "+str(lineDiff)+"pt edge"
 
-                        if lineDiff >= 6:
-                            print colored("$$$$************Big Money************$$$$",'green')
+                        #if lineDiff >= 6:
+                        #    print colored("$$$$************Big Money************$$$$",'green')
 
 			print ateamDisplay
 			print hteamDisplay
