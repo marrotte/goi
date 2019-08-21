@@ -6,6 +6,8 @@ import sys
 # Wrap sys.stdout into a StreamWriter to allow writing unicode.
 sys.stdout = codecs.getwriter(locale.getpreferredencoding())(sys.stdout) 
 
+import time as stime 
+
 from termcolor import colored
 from lxml import html
 import requests
@@ -15,7 +17,7 @@ import sys, getopt
 def usage():
         print "GIO (Games of Interest), Version 4.0"
 	print 'gio.py -s[--sport] <sport> [-d[--day]] <day>'
-        print "supported sports are cbb, nba, cfl, and mlb"
+        print "supported sports are cbb, nba, cfb, nfl and mlb"
         print "example: ./goi.py -s cbb -d Sunday"
         
 
@@ -31,7 +33,7 @@ def main(argv):
             if opt == '-h':
                 usage()                     
                 sys.exit(2)
-            elif opt in ("-s", "--sport") and arg in ("cbb","nba","cfl","mlb"): 
+            elif opt in ("-s", "--sport") and arg in ("nfl", "cbb","nba","cfb","mlb"): 
                 sport=arg
                 found_s = True
             elif opt in ("-d", "--day"):
@@ -47,6 +49,8 @@ def main(argv):
 	daily = requests.get(baseURL+'/feed/statfeedv2/'+sport+'/daily.php?sn=5')
 	tree = html.fromstring(daily.content)
 	reports = tree.xpath('//a[@class="sf" and text()="Report"]/@href')
+
+	#print "Updated: " + time.strftime("%c %Z") 
 
 	for report in reports:
 	    page = requests.get(baseURL+report)
@@ -90,8 +94,10 @@ def main(argv):
 				    lineDiff = abs(float(hteamLine) + float(aestimate))
 				ateamDisplay=ateamDisplay+" ("+aestimate+" powerspread)"
 			if hestimate:
-				if hteamLine == "PK":
+				if hteamLine == "PK" or hteamLine is None:
                                         hteamLine = 0
+				print hestimate
+				print hteamLine
                                 lineDiff = abs(abs(float(hteamLine)) - abs(float(hestimate)))
 				hteamDisplay=hteamDisplay+" ("+hestimate+" powerspread)"
 
