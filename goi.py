@@ -112,11 +112,6 @@ def main(argv):
 
                         if minEdge is None or abs(lineDiff) >= minEdge:
                             print day + " " + time
-
-                        if abs(float(lineDiff)) >= minEdge:
-                            #if lineDiff >= 6:
-                            #    print colored("$$$$************Big Money************$$$$",'green')
-
 			    print ateamDisplay
 			    print hteamDisplay
 			    print "\n"
