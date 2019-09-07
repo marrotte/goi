@@ -25,8 +25,9 @@ def usage():
 def main(argv):
         found_s = False
 	dayFilter = None
+        minEdge = None
 	try:
-	    opts, args = getopt.getopt(argv,"hs:d:",["help", "sport=", "day="])
+	    opts, args = getopt.getopt(argv,"hs:dm:",["help", "sport=", "day=", "min="])
         except getopt.GetoptError:
             usage()
             sys.exit(2)
@@ -39,12 +40,14 @@ def main(argv):
                 found_s = True
             elif opt in ("-d", "--day"):
                 dayFilter=arg
+            elif opt in ("-m", "--min"):
+                minEdge=int(arg)
             else:
                 usage()
         if not found_s:
             usage()
             sys.exit(2)
-
+        
 	baseURL="http://statfeed.statfox.com"
         wwwBaseURL="http://www.statfox.com"
 	daily = requests.get(baseURL+'/feed/statfeedv2/'+sport+'/daily.php?sn=5')
@@ -84,8 +87,6 @@ def main(argv):
 			ateamDisplay=ateam+" "+ateamLine
 			hteamDisplay=hteam+" "+hteamLine
 
-			print day + " " + time
-
 			if aestimate:
 				if hteamLine == "PK":
 					hteamLine = 0
@@ -109,12 +110,16 @@ def main(argv):
 			elif hteam==edgeTeam:
 			    hteamDisplay=hteamDisplay+", "+str(lineDiff)+"pt edge"
 
-                        #if lineDiff >= 6:
-                        #    print colored("$$$$************Big Money************$$$$",'green')
+                        if minEdge is None or abs(lineDiff) >= minEdge:
+                            print day + " " + time
 
-			print ateamDisplay
-			print hteamDisplay
-			print "\n"
+                        if abs(float(lineDiff)) >= minEdge:
+                            #if lineDiff >= 6:
+                            #    print colored("$$$$************Big Money************$$$$",'green')
+
+			    print ateamDisplay
+			    print hteamDisplay
+			    print "\n"
 
 if __name__ == "__main__":
    main(sys.argv[1:])
